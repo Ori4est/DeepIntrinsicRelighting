@@ -3,12 +3,13 @@ from util import util
 
 class BaseOptions():
     def __init__(self):
-        self.server_root = '/ghome/yyang/dataset/'
-        self.dataroot = self.server_root + 'ISR/'  # path of the dataset
-        self.dataroot_vidit = self.server_root + 'VIDIT_full/'
-        self.dataroot_RSR = self.server_root + 'RSR_256/'
-        self.dataroot_multilum = self.server_root + 'Multi_Illumination_small/train/'
-        self.checkpoints_dir = './checkpoints/'   # models are saved here
+        self.server_root = '/content/drive/MyDrive/'
+        self.dataroot = None #self.server_root + 'ISR/'  # path of the dataset
+        self.dataroot_vidit = None #self.server_root + 'VIDIT_full/'
+        self.dataroot_RSR = None #self.server_root + 'RSR_256/'
+        self.dataroot_multilum = None #self.server_root + 'Multi_Illumination_small/train/'
+        
+        self.checkpoints_dir = '/content/drive/MyDrive/Light_SH/CVC-CIC_ckpts/'   # models are saved here
         self.max_dataset_size = float("inf") #float("inf")   # Maximum number of samples allowed per dataset. If the dataset
         # directory contains more than max_dataset_size, only a subset is loaded.
         self.img_size = (256, 256)   # size of the image
