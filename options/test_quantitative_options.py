@@ -7,7 +7,7 @@ class TestQuantitiveOptions(BaseOptions):
 
         # get para
         parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-        #parser.add_argument('--name', type=str)
+        parser.add_argument('--name', type=str)
         parser_value = parser.parse_args(['--name', 'exp_vidit_ours_f'])
         self.name = parser_value.name
 
