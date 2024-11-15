@@ -8,7 +8,7 @@ class TestQuantitiveOptions(BaseOptions):
         # get para
         parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
         #parser.add_argument('--name', type=str)
-        parser_value = parser.parse_args()
+        parser_value = parser.parse_args(['--name', 'exp_vidit_ours_f'])
         self.name = parser_value.name
 
         # self.name = 'exp_isr'  # name of the experiment. It decides where to store samples and models
