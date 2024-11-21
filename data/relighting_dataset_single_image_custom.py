@@ -5,8 +5,8 @@ from PIL import Image
 
 def read_component(dataroot, file_name, img_transform, r_pil=False):
     component_path = "{}/{}".format(dataroot, file_name)
-    if not os.path.exists(component_path):
-        raise Exception("RelightingDataset __getitem__ error")
+    #if not os.path.exists(component_path):
+    #    raise Exception("RelightingDataset __getitem__ error")
 
     img_component = Image.open(component_path).convert('RGB')
     img_tensor = img_transform(img_component)
