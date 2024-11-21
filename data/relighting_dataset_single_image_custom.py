@@ -1,6 +1,19 @@
 from data.base_dataset import BaseDataset, get_params, get_transform
-from data.relighting_dataset_single_image import read_component 
 import torch
+from PIL import Image
+
+
+def read_component(dataroot, file_name, img_transform, r_pil=False):
+    component_path = "{}/{}".format(dataroot, file_name)
+    if not os.path.exists(component_path):
+        raise Exception("RelightingDataset __getitem__ error")
+
+    img_component = Image.open(component_path).convert('RGB')
+    img_tensor = img_transform(img_component)
+    if r_pil:
+        return img_tensor, img_component
+    return img_tensor
+
 
 def get_data_beta(file_name_input, file_name_output, dataroot, img_transform, multiple_replace_image):
 
@@ -18,8 +31,8 @@ def get_data_beta(file_name_input, file_name_output, dataroot, img_transform, mu
     #    data['Image_input'] = None # torch.mul(data['Reflectance_output'], data['Shading_ori'])
     #    data['Image_relighted'] = None # torch.mul(data['Reflectance_output'], data['Shading_output'])
     #else:
-    data['Image_input'] = read_component(dataroot, 'Image', file_name_input, img_transform)
-    data['Image_relighted'] = read_component(dataroot, 'Image', file_name_output, img_transform)
+    data['Image_input'] = read_component(dataroot, file_name_input, img_transform)
+    data['Image_relighted'] = read_component(dataroot, file_name_output, img_transform)
 
     return data
 
@@ -80,7 +93,7 @@ class RelightingDatasetSingleImageCustom(BaseDataset):
         # get the parameters of data augmentation
         transform_params = get_params(self.opt, img_size)
         img_transform = get_transform(self.opt, transform_params)
-        print(f"dataroot modification {dataroot} {self.dataroot_vidit}")
+        print(f"dataroot modification {dataroot}")
         data = get_data_beta(file_name_input, file_name_output, dataroot, img_transform, multiple_replace_image)
 
         return data
