@@ -43,10 +43,10 @@ class TestQuantitiveOptions(BaseOptions):
             self.show_gt_intrinsic = False
             self.light_type = "probes"
         elif using_dataset == 'custom':
-            self.dataset_mode = 'relighting_single_image_test'  # name of the dataset
-            self.anno = 'data/anno_custom/test_quantitative_pairs_10x.txt'  # the anno file from prepare_dataset.py
+            self.dataset_mode = 'custom_single_image'  # name of the dataset
+            self.anno = 'data/anno_custom/test.txt'  # the anno file from prepare_dataset.py
             self.preprocess = 'none'  # 'resize_and_crop'
-            self.show_gt_intrinsic = False
+            self.show_gt_intrinsic = True
             self.light_type = "pan_tilt_color" # Spherical_harmonic" # "probes"
 
         if len(self.name.split('_')) > 2:
