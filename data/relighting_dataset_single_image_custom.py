@@ -74,7 +74,7 @@ class RelightingDatasetSingleImageCustom(BaseDataset):
         # get one pair
         pair = self.pairs_list[index].split()
         file_name_input = pair[0]
-        file_name_output = pair[1]
+        file_name_output = pair[0]
 
         # get the parameters of data augmentation
         transform_params = get_params(self.opt, img_size)
