@@ -11,8 +11,8 @@ def get_data_beta(file_name_input, file_name_output, dataroot, img_transform, mu
 
     # Reflectance_output
     data['Reflectance_output'] = None # read_component(dataroot, 'Reflectance', file_name_input, img_transform)
-    data['Shading_ori'], s_ori = None # read_component(dataroot, 'Shading', file_name_input, img_transform, r_pil=True)
-    data['Shading_output'], s_output = None # read_component(dataroot, 'Shading', file_name_output, img_transform, r_pil=True)
+    data['Shading_ori'] = None # read_component(dataroot, 'Shading', file_name_input, img_transform, r_pil=True)
+    data['Shading_output'] = None # read_component(dataroot, 'Shading', file_name_output, img_transform, r_pil=True)
     if multiple_replace_image:
         data['Image_input'] = None # torch.mul(data['Reflectance_output'], data['Shading_ori'])
         data['Image_relighted'] = None # torch.mul(data['Reflectance_output'], data['Shading_output'])
