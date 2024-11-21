@@ -22,7 +22,7 @@ class BaseOptions():
 
         self.normalization_type = '[0, 1]'   # '[0, 1]' or '[-1, 1]' if this is changed, the inverse normalization in
         # visualizer should also be changed manually.
-        self.multiple_replace_image = True   # if specified, the Image type of the dataset will not be read from the
+        self.multiple_replace_image = False   # if specified, the Image type of the dataset will not be read from the
         # dataset, it will be replaced by the multiple of reflectance and shading.
         self.pre_read_data = False   # if specified, the dataset will be stored in memory before training.
 

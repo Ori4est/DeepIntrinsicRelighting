@@ -1,24 +1,25 @@
 from data.base_dataset import BaseDataset, get_params, get_transform
 from data.relighting_dataset_single_image import read_component 
+import torch
 
 def get_data_beta(file_name_input, file_name_output, dataroot, img_transform, multiple_replace_image):
 
     data = {}  # output dictionary
-
+    # batch must contain tensors, numpy arrays, numbers, dicts or lists; found <class 'NoneType'>
     data['scene_label'] = file_name_input # use metadata in the future?
-    data['light_position_color_original'] = None # image_name2light_condition(file_name_input)
-    data['light_position_color_new'] = None # image_name2light_condition(file_name_output)
+    data['light_position_color_original'] = torch.zeros(7) # image_name2light_condition(file_name_input)
+    data['light_position_color_new'] = torch.zeros(7) # image_name2light_condition(file_name_output)
 
-    # Reflectance_output
-    data['Reflectance_output'] = None # read_component(dataroot, 'Reflectance', file_name_input, img_transform)
-    data['Shading_ori'] = None # read_component(dataroot, 'Shading', file_name_input, img_transform, r_pil=True)
-    data['Shading_output'] = None # read_component(dataroot, 'Shading', file_name_output, img_transform, r_pil=True)
-    if multiple_replace_image:
-        data['Image_input'] = None # torch.mul(data['Reflectance_output'], data['Shading_ori'])
-        data['Image_relighted'] = None # torch.mul(data['Reflectance_output'], data['Shading_output'])
-    else:
-        data['Image_input'] = read_component(dataroot, 'Image', file_name_input, img_transform)
-        data['Image_relighted'] = read_component(dataroot, 'Image', file_name_output, img_transform)
+    # Reflectance_output from stage 1 
+    #data['Reflectance_output'] = None # read_component(dataroot, 'Reflectance', file_name_input, img_transform)
+    #data['Shading_ori'] = None # read_component(dataroot, 'Shading', file_name_input, img_transform, r_pil=True)
+    #data['Shading_output'] = None # read_component(dataroot, 'Shading', file_name_output, img_transform, r_pil=True)
+    #if multiple_replace_image:
+    #    data['Image_input'] = None # torch.mul(data['Reflectance_output'], data['Shading_ori'])
+    #    data['Image_relighted'] = None # torch.mul(data['Reflectance_output'], data['Shading_output'])
+    #else:
+    data['Image_input'] = read_component(dataroot, 'Image', file_name_input, img_transform)
+    data['Image_relighted'] = read_component(dataroot, 'Image', file_name_output, img_transform)
 
     return data
 
