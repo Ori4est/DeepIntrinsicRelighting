@@ -16,7 +16,6 @@ class TestQuantitiveOptions(BaseOptions):
         # self.name = 'exp_vidit_ours_f'
         # self.name = 'exp_multilum_ours_f'
 
-
         using_dataset = self.name.split('_')[1]
         if using_dataset == "isr":
             self.dataset_mode = 'relighting_single_image_test'  # name of the dataset
@@ -43,6 +42,12 @@ class TestQuantitiveOptions(BaseOptions):
             self.preprocess = 'none'
             self.show_gt_intrinsic = False
             self.light_type = "probes"
+        elif using_dataset == 'custom':
+            self.dataset_mode = 'relighting_single_image_test'  # name of the dataset
+            self.anno = 'data/anno_custom/test_quantitative_pairs_10x.txt'  # the anno file from prepare_dataset.py
+            self.preprocess = 'none'  # 'resize_and_crop'
+            self.show_gt_intrinsic = False
+            self.light_type = "pan_tilt_color" # Spherical_harmonic" # "probes"
 
         if len(self.name.split('_')) > 2:
             using_model = self.name.split('_')[2]

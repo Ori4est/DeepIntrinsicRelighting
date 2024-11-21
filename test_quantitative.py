@@ -4,7 +4,7 @@ test script which is used to get quantitive results
 import os
 # os.environ["CUDA_VISIBLE_DEVICES"] = '4'
 from options.test_quantitative_options import TestQuantitiveOptions
-from data import create_dataset
+from data import create_dataset, create_custom_dataset
 from models.models import create_model
 import torch
 from tqdm import tqdm
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     print(opt.name)
     opt.pre_read_data = False
 
-    dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
+    dataset = create_custom_dataset(opt)  # create a dataset given opt.dataset_mode and other options
     model = create_model(opt)      # create a model given opt.model and other options
     model.setup(opt)               # regular setup: load and print networks; create schedulers
 

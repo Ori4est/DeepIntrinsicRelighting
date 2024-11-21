@@ -103,6 +103,10 @@ class CustomDatasetDataLoader():
                 from data.relighting_dataset_single_image_vidit import RelightingDatasetSingleImageVidit
                 self.dataset = RelightingDatasetSingleImageVidit(opt)
                 if_shuffle = not opt.serial_batches
+        elif opt.dataset_mode == 'custom_single_image':
+            from data.relighting_dataset_single_image_custom import RelightingDatasetSingleCustom
+            self.dataset = RelightingDatasetSingleCustom(opt, validation=validation)
+            if_shuffle = False
         else:
             raise Exception("Can not find dataset!")
 
