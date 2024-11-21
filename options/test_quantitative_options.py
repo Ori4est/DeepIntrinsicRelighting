@@ -47,7 +47,7 @@ class TestQuantitiveOptions(BaseOptions):
             self.anno = 'data/anno_custom/test.txt'  # the anno file from prepare_dataset.py
             self.preprocess = 'none'  # 'resize_and_crop'
             self.show_gt_intrinsic = False
-            self.light_type = "pan_tilt_color" # Spherical_harmonic" # "probes"
+            self.light_type = "pan_tilt_color" # Spherical_harmonic # "probes"
 
         if len(self.name.split('_')) > 2:
             using_model = self.name.split('_')[2]

@@ -80,7 +80,7 @@ class RelightingDatasetSingleImageCustom(BaseDataset):
         # get the parameters of data augmentation
         transform_params = get_params(self.opt, img_size)
         img_transform = get_transform(self.opt, transform_params)
-
+        print(f"dataroot modification {dataroot} {self.dataroot_vidit}")
         data = get_data_beta(file_name_input, file_name_output, dataroot, img_transform, multiple_replace_image)
 
         return data
