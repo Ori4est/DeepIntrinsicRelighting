@@ -409,8 +409,7 @@ class ResnetGeneratorRelighting(nn.Module):
                     self.norm_layer(light_merge),
                     nn.ReLU(True)]
 
-            #fc_out_light = [nn.Linear(light_merge, light_channel), nn.Sigmoid()]
-            fc_out_light = [nn.Linear(light_merge, 3), nn.Sigmoid()]
+            fc_out_light = [nn.Linear(light_merge, light_channel), nn.Sigmoid()]
             return fc_in_light, light_up, light_down, fc_out_light
         else:
             return fc_in_light, light_up
