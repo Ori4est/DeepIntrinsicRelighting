@@ -51,7 +51,7 @@ def image_name2light_condition(img_name):
     light_position[:2] = [x * PARA_NOR['pan_a'] + PARA_NOR['pan_b'] for x in light_position[:2]]
     light_position[2:] = [x * PARA_NOR['tilt_a'] + PARA_NOR['tilt_b'] for x in light_position[2:]]
     # transform light temperature to RGB, and normalize it.
-    light_color = list(map(lambda x: x / 255.0, convert_K_to_RGB(color_temp)))
+    light_color = list(map(lambda x: x / 255.0, convert_K_to_RGB(color_temp))) # RGB val in range [0, 1]
     light_position_color = light_position + light_color
     return torch.tensor(light_position_color)
 

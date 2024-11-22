@@ -317,7 +317,8 @@ class ResnetGeneratorRelighting(nn.Module):
                               nn.Sigmoid()]
                 self.probe_out = nn.Sequential(*probe_out)
         elif light_type == "pan_tilt_color":
-            light_modules = self.light_vector_module(light_channel=7, light_merge=light_merge)
+            light_modules = self.light_vector_module(light_channel=7, light_merge=light_merge) # fc_in_light, light_up, light_down, fc_out_light
+            print(f'fc_in_light: {light_modules[0].shape}, light_up: {light_modules[1].shape}, light_down: {light_modules[2].size()}, fc_out_light: {light_modules[3].size()}')
             self.light_up = nn.Sequential(*light_modules[1])
             self.fc_in_light = nn.Sequential(*light_modules[0])
             if self.light_prediction:
