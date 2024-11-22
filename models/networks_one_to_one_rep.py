@@ -388,7 +388,7 @@ class ResnetGeneratorRelighting(nn.Module):
         self.model_res_left = nn.Sequential(*model_res_left)
         self.model_res_right = nn.Sequential(*model_res_right)
         self.model_up = nn.Sequential(*model_up)
-        self.split_point = ngf * 2 ** n_downsampling - light_merge
+        self.split_point = ngf * 2 ** n_downsampling - light_merge #64*2**2-16
 
     def light_vector_module(self, light_channel=7, light_merge=16):
         fc_in_light = [nn.Linear(light_channel, light_merge)]
@@ -421,6 +421,7 @@ class ResnetGeneratorRelighting(nn.Module):
         out = self.model_res_left(out)
         out1 = out[:, self.split_point:, :, :]
         out2 = out[:, :self.split_point, :, :]
+        print(f"out split {out1.size()}, {out2.size()}, {x_new_light.size()}")
         if self.light_type == "probes":
             if self.light_prediction:
                 out1 = self.probe_out(out1)
@@ -428,7 +429,7 @@ class ResnetGeneratorRelighting(nn.Module):
         elif self.light_type == "pan_tilt_color":
             if self.light_prediction:
                 out1 = self.light_down(out1).squeeze(3).squeeze(2)
-                print(f"light output channel changed? {out1}")
+                print(f"light output channel changed? {out1.size()}")
                 out1 = self.fc_out_light(out1)
             in_light = self.fc_in_light(x_new_light)
             in_light = in_light.unsqueeze(2).unsqueeze(3)
