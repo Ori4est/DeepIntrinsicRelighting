@@ -264,6 +264,7 @@ class BaseModel(ABC):
 
     def trim_state_dict(self, net, pretrained_dict):
         net_dict = net.state_dict()
+        print(f"Net params {net_dict}")
         trim_dict = {}
         print("Some layers are trimmed:")
         for k, v in pretrained_dict.items():
