@@ -323,7 +323,7 @@ class ResnetGeneratorRelighting(nn.Module):
             self.fc_in_light = nn.Sequential(*light_modules[0])
             if self.light_prediction:
                 self.light_down = nn.Sequential(*light_modules[2])
-                self.fc_out_light = nn.Sequential(*light_modules[3])
+                self.fc_out_light = nn.Sequential(*light_modules[3]) # fc_out_light: [Linear(in_features=16, out_features=7, bias=True), Sigmoid()]
         elif light_type == "Spherical_harmonic":
             light_modules = self.light_vector_module(light_channel=9, light_merge=light_merge)
             self.SH_in_light = nn.Sequential(*light_modules[0])
@@ -428,6 +428,7 @@ class ResnetGeneratorRelighting(nn.Module):
         elif self.light_type == "pan_tilt_color":
             if self.light_prediction:
                 out1 = self.light_down(out1).squeeze(3).squeeze(2)
+                print(f"light output channel changed? {out1}")
                 out1 = self.fc_out_light(out1)
             in_light = self.fc_in_light(x_new_light)
             in_light = in_light.unsqueeze(2).unsqueeze(3)
