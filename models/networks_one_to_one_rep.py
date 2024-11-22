@@ -428,8 +428,8 @@ class ResnetGeneratorRelighting(nn.Module):
         elif self.light_type == "pan_tilt_color":
             if self.light_prediction:
                 out1 = self.light_down(out1).squeeze(3).squeeze(2)
-                print(f"light output channel changed? {out1.size()}")
-                out1 = self.fc_out_light(out1)
+                print(f"light output channel changed? {out1.size()} expecting (1, 16)")
+                out1 = self.fc_out_light(out1[:, :, 0])
             in_light = self.fc_in_light(x_new_light)
             in_light = in_light.unsqueeze(2).unsqueeze(3)
             in_light = self.light_up(in_light)
