@@ -3,10 +3,10 @@ from util import util
 
 class BaseOptions():
     def __init__(self):
-        self.server_root = '/content/drive/MyDrive/'
-        self.dataroot = '/content/drive/MyDrive/' #self.server_root + 'ISR/'  # path of the dataset
+        self.server_root = '/content/drive/MyDrive/Light_SH/'
+        self.dataroot = '/content/drive/MyDrive/Light_SH/' #self.server_root + 'ISR/'  # path of the dataset
         self.dataroot_vidit = None #self.server_root + 'VIDIT_full/'
-        self.dataroot_RSR = None #self.server_root + 'RSR_256/'
+        self.dataroot_RSR = self.server_root + 'RSR_256/'
         self.dataroot_multilum = None #self.server_root + 'Multi_Illumination_small/train/'
         
         self.checkpoints_dir = '/content/drive/MyDrive/Light_SH/CVC-CIC_ckpts/'   # models are saved here
