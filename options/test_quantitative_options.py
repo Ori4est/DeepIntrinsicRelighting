@@ -8,7 +8,7 @@ class TestQuantitiveOptions(BaseOptions):
         # get para
         parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
         parser.add_argument('--name', type=str)
-        parser_value = parser.parse_args(['--name', 'exp_rsr_ours_f'])
+        parser_value = parser.parse_args(['--name', 'exp_custom_ours_f'])
         self.name = parser_value.name
 
         # self.name = 'exp_isr'  # name of the experiment. It decides where to store samples and models
@@ -45,7 +45,7 @@ class TestQuantitiveOptions(BaseOptions):
         elif using_dataset == 'custom':
             self.dataset_mode = 'custom_single_image'  # name of the dataset
             self.anno = 'data/anno_custom/test.txt'  # the anno file from prepare_dataset.py
-            self.preprocess = 'none'  # 'resize_and_crop'
+            self.preprocess = 'resize_and_crop' # make sure the input is strickly (256, 256)
             self.show_gt_intrinsic = False
             self.light_type = "pan_tilt_color" # Spherical_harmonic # "probes"
 
