@@ -15,7 +15,7 @@ def read_component(dataroot, file_name, img_transform, r_pil=False):
     return img_tensor
 
 
-def get_data_beta(file_name_input, file_name_output, dataroot, img_transform):
+def get_data_beta(file_name_input, file_name_output, dataroot, img_transform, multiple_replace_image):
 
     data = {}  # output dictionary
     # batch must contain tensors, numpy arrays, numbers, dicts or lists; found <class 'NoneType'>
